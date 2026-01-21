@@ -1,0 +1,127 @@
+.header {
+  padding: 11px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  @include vp-767 {
+    padding: 0;
+  }
+
+  .container {
+    padding: 0 25px;
+    max-width: 1440px;
+
+    @include vp-1023 {
+      padding: 0 20px;
+    }
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 210px 1fr;
+    gap: 30px;
+    align-items: center;
+
+    @include vp-1023 {
+      grid-template-columns: 1fr 150px 1fr;
+    }
+
+    @include vp-767 {
+      grid-template-columns: 1fr 130px 1fr;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    color: $color-white;
+    transition: color $transition-300;
+
+    &:focus-visible,
+    &:hover {
+      color: $color-apple;
+    }
+
+    &-icon {
+      height: 58px;
+      width: 210px;
+    }
+  }
+
+  &__user {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+    align-items: center;
+  }
+
+  &__link {
+    width: 182px;
+
+    @include vp-1023 {
+      width: 160px;
+    }
+
+    @include vp-767 {
+      display: none;
+    }
+  }
+
+  &__phone {
+    position: relative;
+    display: flex;
+    font-family: $ff-secondary;
+    line-height: 21.6px;
+    font-size: 16px;
+    color: $color-white;
+    $root: &;
+
+    &:focus-visible,
+    &:hover {
+      #{$root}-text {
+
+        &::before {
+          left: 0;
+          right: 0;
+        }
+      }
+
+      #{$root}-icon {
+        color: $color-apple;
+        transform: scale(1.2) rotate(5deg);
+      }
+    }
+
+    &-text {
+      &::before {
+        content: "";
+        position: absolute;
+        left: 51%;
+        right: 51%;
+        bottom: 0;
+        background: $color-apple;
+        height: 1px;
+        transition: left $transition-300,
+          right $transition-300;
+      }
+
+      @media (max-width: 1280px) {
+        display: none;
+      }
+    }
+
+    &-icon {
+      display: none;
+
+      @media (max-width: 1280px) {
+        display: flex;
+        height: 24px;
+        width: 24px;
+        transition: color $transition-300,
+          transform $transition-300;
+      }
+    }
+  }
+}
